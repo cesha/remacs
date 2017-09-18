@@ -2243,15 +2243,6 @@ In this case, zeros are shifted in on the left.  */)
   return ash_lsh_impl (value, count, true);
 }
 
-DEFUN ("lognot", Flognot, Slognot, 1, 1, 0,
-       doc: /* Return the bitwise complement of NUMBER.  NUMBER must be an integer.  */)
-  (register Lisp_Object number)
-{
-  CHECK_NUMBER (number);
-  XSETINT (number, ~XINT (number));
-  return number;
-}
-
 DEFUN ("byteorder", Fbyteorder, Sbyteorder, 0, 0, 0,
        doc: /* Return the byteorder for the machine.
 Returns 66 (ASCII uppercase B) for big endian machines or 108 (ASCII
@@ -2815,7 +2806,6 @@ syms_of_data (void)
   defsubr (&Sstring_to_number);
   defsubr (&Slsh);
   defsubr (&Sash);
-  defsubr (&Slognot);
   defsubr (&Sbyteorder);
   defsubr (&Ssubr_arity);
   defsubr (&Ssubr_name);
