@@ -132,3 +132,14 @@ pub fn point_min() -> LispObject {
 pub fn point_max() -> LispObject {
     LispObject::from_natnum(ThreadState::current_buffer().zv() as EmacsInt)
 }
+
+/// Return t if two character match, optionally ignoring case.  Both
+/// arguments must be characters (i.e., integers).  Case is ignored if
+/// `case-fold-search' is non-nil in the current buffer
+#[lisp_fn]
+pub fn char_equal(c1: LispObject, c2: LispObject) -> LispObject {
+    let c1 = c1.as_character_or_error();
+    let c2 = c2.as_character_or_error();
+
+    LispObject::from_bool(c1 == c2)
+}
